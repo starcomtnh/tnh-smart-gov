@@ -150,7 +150,7 @@ baseware:
         username: TnhCamSchoolBot
         
 server:
-  address: 10.73.60.136
+  address: localhost
   port: 9999
   #ssl:
   #  key-store: "classpath:tls/baseware_core.p12"
