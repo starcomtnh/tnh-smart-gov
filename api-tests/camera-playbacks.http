@@ -1,0 +1,5 @@
+### Start a camera playback
+GET {{base_url}}/camera-playbacks/start/bb2d709a-d1ca-4ba7-a74a-ecba696ee5b1/43e446d1-33c4-469b-8e34-11c98054dd42?
+    startTime=2025-06-10T09:00:00
+Content-Type: application/json
+Authorization: Bearer {{access_token}}

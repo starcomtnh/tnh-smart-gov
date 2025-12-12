@@ -1,0 +1,4 @@
+
+### Get camera device statistics
+GET {{base_url}}/camera-devices/statistics
+Authorization: Bearer {{access_token}}

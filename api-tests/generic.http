@@ -1,0 +1,155 @@
+### Create a new entity
+POST {{base_url}}/{{entity}} HTTP/1.1
+Accept-Language: en
+Content-Type: application/json
+Authorization: Bearer {{access_token}}
+
+{
+  "name": "CAM-FD-013",
+  "code": "CAM-FD-013",
+  "channel": 1,
+  "camera_identifier": "FD-013",
+  "stream_url": "rtsp://abcd:aabb1234@14.161.253.235:3472/Streaming/Channels/101",
+  "description": "Camera 013 at the front entrance",
+  "recording_enabled": true,
+  "type": "PTZ",
+  "status": "ACTIVE",
+  "vendor": "HIKVISION",
+  "latitude": 21.0277644,
+  "longitude": 105.8341598,
+  "location": "Front Entrance",
+  "camera_server_id": "59733b3c-61ea-4df4-9309-7077fa35419a",
+  "zone_id": "8278e0bc-d7be-42cc-afed-0630607cda97"
+}
+
+### Update an existing entity
+PUT {{base_url}}/{{entity}}/1 HTTP/1.1
+Content-Type: application/json
+Authorization: {{access_token}}
+
+{
+  "name": "string"
+}
+
+### Delete an entity by ID
+DELETE {{base_url}}/{{entity}}/1 HTTP/1.1
+Authorization: {{access_token}}
+
+### Delete multiple entities by IDs
+DELETE {{base_url}}/{{entity}}/1,2,3 HTTP/1.1
+Content-Type: application/json
+Authorization: {{access_token}}
+
+[
+  "3fa85f64-5717-4562-b3fc-2c963f66afa6"
+]
+
+### Soft delete an entity by ID
+DELETE {{base_url}}/{{entity}}/soft-delete/1 HTTP/1.1
+Authorization: {{access_token}}
+
+### Soft delete multiple entities by IDs
+DELETE {{base_url}}/{{entity}}/soft-delete HTTP/1.1
+Content-Type: application/json
+Authorization: {{access_token}}
+
+[
+  "3fa85f64-5717-4562-b3fc-2c963f66afa6"
+]
+
+### Find an entity by ID
+GET {{base_url}}/{{entity}}/1 HTTP/1.1
+Authorization: {{access_token}}
+
+### Safely find an entity by ID
+GET {{base_url}}/{{entity}}/safe/1 HTTP/1.1
+Authorization: {{access_token}}
+
+### Get reference by ID
+GET {{base_url}}/{{entity}}/reference/1 HTTP/1.1
+Authorization: {{access_token}}
+
+### Find all entities
+GET {{base_url}}/{{entity}} HTTP/1.1
+Authorization: Bearer {{access_token}}
+
+### Find all entities with pagination
+GET {{base_url}}/{{entity}}/pagination HTTP/1.1
+Authorization: {{access_token}}
+
+### Find all active entities
+GET {{base_url}}/{{entity}}/active HTTP/1.1
+Authorization: Bearer {{access_token}}
+
+### Find all active entities with pagination
+GET {{base_url}}/{{entity}}/active/pagination?page=1&limit=10 HTTP/1.1
+Authorization: {{access_token}}
+
+### Find all entities by list of IDs
+GET {{base_url}}/{{entity}}/ids HTTP/1.1
+Content-Type: application/json
+Authorization: {{access_token}}
+
+[
+  "6868d18c-32b7-48e9-ab4b-a9d91190834a"
+]
+
+### Find all not-deleted entities by list of IDs
+GET {{base_url}}/{{entity}}/ids/active HTTP/1.1
+Content-Type: application/json
+Authorization: {{access_token}}
+
+[
+  "3fa85f64-5717-4562-b3fc-2c963f66afa6"
+]
+
+### Find all not-deleted entities by list of IDs with pagination
+GET {{base_url}}/{{entity}}/ids/active/pagination?page=1&limit=10 HTTP/1.1
+Content-Type: application/json
+Authorization: {{access_token}}
+
+[
+  "3fa85f64-5717-4562-b3fc-2c963f66afa6"
+]
+
+### Find all entities by field name and value
+GET {{base_url}}/{{entity}}/by-field?fieldName=&value= HTTP/1.1
+Authorization: {{access_token}}
+
+### Find all entities by field name and value with pagination
+GET {{base_url}}/{{entity}}/by-field/pagination?fieldName=&value=&page=1&limit=10 HTTP/1.1
+Authorization: {{access_token}}
+
+### Check if entity exists by field name and value
+GET {{base_url}}/{{entity}}/by-field/exists?fieldName=&value= HTTP/1.1
+Authorization: {{access_token}}
+
+### Search entities using filter criteria
+GET {{base_url}}/{{entity}}/search HTTP/1.1
+Content-Type: application/json
+Authorization: {{access_token}}
+
+{
+  "filters": [
+    {
+      "key": "name",
+      "operator": "EQUAL",
+      "field_type": "STRING",
+      "values": [
+        "Hoà Thành"
+      ],
+      "value": "Hoà Thành",
+      "value_to": null
+    }
+  ],
+  "sorts": [
+    {
+      "key": "name",
+      "direction": "ASC"
+    }
+  ]
+}
+
+### Get enum values by enum name
+GET {{base_url}}/{{entity}}/enums?name=AgentRole HTTP/1.1
+Authorization: {{access_token}}

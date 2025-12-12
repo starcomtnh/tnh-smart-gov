@@ -1,0 +1,3 @@
+### Find all provinces by country code
+GET {{base_url}}/provinces/by-country/84
+Authorization: {{access_token}}

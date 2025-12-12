@@ -1,0 +1,55 @@
+### Assign menus to a parent unit
+POST {{base_url}}/menus/123/assign-menus
+Content-Type: application/json
+Authorization: {{access_token}}
+
+[
+  "123456"
+]
+
+### Remove menus from a parent unit
+POST {{base_url}}/menus/123/remove-menus
+Content-Type: application/json
+Authorization: {{access_token}}
+
+[
+  "123456"
+]
+
+### Assign roles to a menu
+POST {{base_url}}/menus/123/assign-roles
+Content-Type: application/json
+Authorization: {{access_token}}
+
+[
+  "123456"
+]
+
+### Remove roles from a menu
+POST {{base_url}}/menus/123/remove-roles
+Content-Type: application/json
+Authorization: {{access_token}}
+
+[
+  "123456"
+]
+
+### Check if a role has access to a menu
+GET {{base_url}}/menus/123/has-access/123456
+Authorization: {{access_token}}
+
+### Find all menus without roles
+GET {{base_url}}/menus/without-roles
+Authorization: {{access_token}}
+
+### Find all menus without a specific role
+GET {{base_url}}/menus/without-role/123456
+Authorization: {{access_token}}
+
+### Find all menus by role ID
+GET {{base_url}}/menus/by-role/123456
+Authorization: {{access_token}}
+
+### Find all menus by role ID with pagination
+GET {{base_url}}/menus/by-role/123456/pagination?page=1&limit=10
+Authorization: {{access_token}}

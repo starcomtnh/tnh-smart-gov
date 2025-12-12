@@ -1,0 +1,8 @@
+server:
+  port: 8081
+
+security:
+  api-key: my-secret-key  # 🔐 Key bí mật phải trùng với máy A
+
+playback:
+  video-dir: /srv/videos/

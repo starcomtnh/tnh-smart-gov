@@ -1,0 +1,68 @@
+### Create rtsp stream with api ome server
+POST https://ivms-sso.vienthongtayninh.vn/ome9091/v1/vhosts/default/apps/app/streams
+Content-Type: application/json
+Authorization: Basic aXZtczpaeGN2Ym5tMTIzIUAj
+
+{
+  "name": "cam001",
+  "urls": [
+    "rtsp://abcd:aabb1234@10.10.0.48:554/Streaming/Tracks/2001?starttime=20250610T060000Z"
+  ],
+  "properties": {
+    "persistent": false,
+    "noInputFailoverTimeoutMs": 6000,
+    "unusedStreamDeletionTimeoutMs": 60000,
+    "ignoreRtcpSRTimestamp": true
+  }
+}
+
+### Create rtsp playback with api ome server
+POST https://ivms-sso.vienthongtayninh.vn/ome9091/v1/vhosts/default/apps/app/streams
+Content-Type: application/json
+Authorization: Basic aXZtczpaeGN2Ym5tMTIzIUAj
+
+{
+  "name": "cam001",
+  "urls": [
+    "rtsp://abcd:aabb1234@10.10.0.48:554/Streaming/Tracks/2001?starttime=20250609T090000Z"
+  ],
+  "properties": {
+    "persistent": false,
+    "noInputFailoverTimeoutMs": 6000,
+    "unusedStreamDeletionTimeoutMs": 60000,
+    "ignoreRtcpSRTimestamp": true
+  }
+}
+
+### Get Virtual Host List
+GET http://127.0.0.1:8081/v1/vhosts
+Authorization: Basic c3RhcmNvbTpzdGFyY29tMTIzNDU2
+
+### Get Virtual Host Information
+GET http://127.0.0.1:8081/v1/vhosts/default
+Authorization: Basic c3RhcmNvbTpzdGFyY29tMTIzNDU2
+
+### Get Application List
+GET http://127.0.0.1:8081/v1/vhosts/default/apps
+Authorization: Basic c3RhcmNvbTpzdGFyY29tMTIzNDU2
+
+### Get Stream List
+GET https://ivms-sso.vienthongtayninh.vn/ome8084/v1/vhosts/default/apps/app/streams
+Authorization: Basic aXZtczpaeGN2Ym5tMTIzIUAj
+
+### Get Statistics of Application
+GET https://ivms-sso.vienthongtayninh.vn/ome8081/v1/stats/current/vhosts/default/apps/app
+Authorization: Basic aXZtczpaeGN2Ym5tMTIzIUAj
+
+### Delete Stream List
+DELETE https://ivms-sso.vienthongtayninh.vn/ome8081/v1/vhosts/default/apps/app/streams/stream-9937159d-6ba5-4400-bc6a-08ae5c428ac8
+Authorization: Basic aXZtczpaeGN2Ym5tMTIzIUAj
+
+### Get Stream Information
+GET https://ivms-sso.vienthongtayninh.vn/ome8081/v1/vhosts/default/apps/app/streams/stream-d3757e3a-9c00-4c69-807d-2e6eef786d87
+Authorization: Basic aXZtczpaeGN2Ym5tMTIzIUAj
+
+### Get Metrics Information
+GET http://127.0.0.1:8081/v1/system/metrics/stream
+Authorization: Basic c3RhcmNvbTpzdGFyY29tMTIzNDU2
+

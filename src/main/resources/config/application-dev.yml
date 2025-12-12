@@ -1,0 +1,165 @@
+spring:
+  application:
+    name: "tnh-taskmaster"
+  jmx:
+    enabled: false
+  datasource:
+    url: "jdbc:postgresql://localhost:5432/taskmaster_dev"
+    username: "postgres"
+    password: "postgres@123"
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      connection-timeout: 20000 # 20 seconds
+      minimum-idle: 5
+      maximum-pool-size: 5
+      idle-timeout: 10000 # 10 seconds
+      max-lifetime: 30000 # 30 seconds
+      auto-commit: true
+      leak-detection-threshold: 5000 # 5 seconds
+  jpa:
+    show-sql: false
+    hibernate:
+      naming:
+        physical-strategy: com.tnh.baseware.core.configs.CustomNamingStrategy
+        implicit-strategy: org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy
+      ddl-auto: update
+    properties:
+      hibernate:
+        enable_lazy_load_no_trans: true
+    open-in-view: false
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 20MB
+      max-request-size: 20MB
+      file-size-threshold: 2KB
+  jackson:
+    property-naming-strategy: "SNAKE_CASE"
+    date-format: "dd/MM/yyyy HH:mm:ss"
+    time-zone: "Asia/Ho_Chi_Minh"
+  messages:
+    basename: "i18n/messages"
+    encoding: UTF-8
+    cache-duration: 3600 # seconds
+    fallback-to-system-locale: false
+  cache:
+    type: redis
+    redis:
+      time-to-live: 10 # minutes
+      enable-statistics: false
+  data:
+    web:
+      pageable:
+        default-page-size: 10
+        max-page-size: 100
+    redis:
+      repositories:
+        enabled: false
+      host: localhost
+      port: 6379
+      password:
+  autoconfigure:
+    exclude:
+      - org.springframework.boot.autoconfigure.data.redis.RedisAutoConfiguration
+logging:
+  pattern:
+    file: "%d{dd-MM-yyyy HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"
+    console: "%d{dd-MM-yyyy HH:mm:ss.SSS} %magenta([%thread]) %highlight(%-5level) %logger.%M - %msg%n"
+  level:
+    root: INFO
+    com.tnh.baseware.core: INFO
+    org.springframework: INFO
+    org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer: ERROR
+  file:
+    name: "${logging.file.path}/tnh_taskmaster.log"
+    path: logs
+baseware:
+  core:
+    system:
+      api-prefix: "/api/v1"
+      name: "TNH Taskmaster API"
+      version: "1.0.0"
+      description: "TNH Taskmaster API"
+      tracking-active: false # enable tracking
+      initialized-enabled: true
+      cache-pattern-clear-interval-ms: 7200000 # 2 hours
+      token-clear-interval: "0 0 0 * * ?" # 00:00:00
+      check-camera-devices:
+        enabled: false
+        interval: 3000 #  10 minutes
+        timeout: 10000 # 10 seconds
+        threads: 10
+      check-payment:
+        enabled: true
+        cron: "0 0 0 1,15 * ?" # Every month at 00:00:00
+        timeout: 10000 # 10 seconds
+        threads: 5
+    cors:
+      allowed-origins: "*"
+      allowed-methods: "GET,POST,PUT,DELETE,OPTIONS,HEAD,PATCH,TRACE"
+      allowed-headers: "*"
+      exposed-headers: "*"
+      allow-credentials: true
+      max-age: 3600 # 1 hour
+    security:
+      jwt:
+        issuer: starcom
+        secret-key: "dmVr90TkRukYJxWQZ4UNOKEqESiGwQhyMOhZKwsWywjQeE2y6z9o6wT43ALyhCYA0SLZXAAUc46BkN8FJ2+1Dw=="
+        expiration: 86400000 # 1 day
+        refresh-expiration: 604800000 # 7 days
+        allow-multiple-devices: true # allow multiple devices to login
+      privilege:
+        ttl: 3600000 # 1 hour
+        prefix: "privileges:" # prefix for privilege cache
+      register:
+        role-default: User
+        enabled: false
+      login:
+        url_login: "${baseware.core.system.api-prefix}/auth/login"
+        url_logout: "${baseware.core.system.api-prefix}/auth/logout"
+        url_refresh_token: "${baseware.core.system.api-prefix}/auth/refresh-token"
+        max-attempts: 6 # number of attempts
+        lock-time-duration: 60000 # 1 minute
+      password-default: "123456"
+    thread:
+      pool:
+        max-size: 50
+        size: 10
+        keep-alive-seconds: 30
+        queue-size: 100
+    email:
+      host: smtp.gmail.com
+      port: 587
+      username:
+      password:
+      transport-protocol: smtp
+      smtp-auth: true
+      smtp-starttls-enable: true
+      debug: false
+    external:
+      api:
+        request-timeout-seconds: 30
+        max-retry-attempts: 2
+        retry-backoff-millis: 1000
+        circuit-breaker-enabled: true
+    chat-bot:
+      telegram:
+        bot-token: 8300018268:AAGJCFU3jSrQTlkwopkuVnTWv-UPlleC460
+        chat-id: -1003018312333
+        enabled: true
+        username: TnhCamSchoolBot
+        
+server:
+  address: 10.73.60.136
+  port: 9999
+  #ssl:
+  #  key-store: "classpath:tls/baseware_core.p12"
+  #  key-store-password: "Baseware@1234"
+  #  key-store-type: "PKCS12"
+  #  key-alias: "baseware_core"
+  max-http-request-header-size: 10KB
+  servlet:
+    context-path: /
+springdoc:
+  api-docs:
+    path: "/api-docs"

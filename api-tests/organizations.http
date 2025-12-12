@@ -1,0 +1,39 @@
+### Assign all organizations to a parent unit
+POST {{base_url}}/organizations/4ddd8e82-ea5c-48af-8e24-c7fdbe52ca6f/assign-organizations
+Content-Type: application/json
+Authorization: {{access_token}}
+
+[
+  "0eee64a6-d453-4e15-8734-2064761aa5d6",
+  "8f6c4e61-fcb9-4d78-8abb-24ab9a2a072e",
+  "cdb49c68-7666-4ec0-b88a-45c5c36d2c67"
+]
+
+### Remove all organizations from a parent unit
+DELETE {{base_url}}/organizations/4ddd8e82-ea5c-48af-8e24-c7fdbe52ca6f/remove-organizations
+Content-Type: application/json
+Authorization: {{access_token}}
+
+[
+  "0eee64a6-d453-4e15-8734-2064761aa5d6",
+  "8f6c4e61-fcb9-4d78-8abb-24ab9a2a072e",
+  "cdb49c68-7666-4ec0-b88a-45c5c36d2c67"
+]
+
+### Assign all users to an organization
+POST {{base_url}}/organizations/123/assign-users
+Content-Type: application/json
+Authorization: {{access_token}}
+
+[
+  "123456"
+]
+
+### Remove all users from an organization
+POST {{base_url}}/organizations/123/remove-users
+Content-Type: application/json
+Authorization: {{access_token}}
+
+[
+  "123456"
+]

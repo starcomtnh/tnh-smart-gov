@@ -1,0 +1,3 @@
+### Find all communes by district code
+GET {{base_url}}/communes/by-district/75056
+Authorization: {{access_token}}

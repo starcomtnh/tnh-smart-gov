@@ -1,0 +1,3 @@
+### Find all districts.http by province code
+GET {{base_url}}/districts/by-province/75
+Authorization: {{access_token}}

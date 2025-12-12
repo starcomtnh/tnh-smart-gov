@@ -1,0 +1,28 @@
+openapi:
+  info:
+    title: "TNH Taskmaster API"
+    description: "TNH Taskmaster API"
+    version: "1.0"
+    termsOfService: "https://starcom.io/terms/"
+  contact:
+    name: "Mr. Starcom"
+    email: "nvdoi.tnh@gmail.com"
+    url: "https://starcom.io"
+  license:
+    name: "Starcom License"
+    url: "https://starcom.io/license"
+  servers:
+    - description: "Local ENV"
+      url: "https://localhost:8888"
+    - description: "PROD ENV"
+      url: "https://starcom.io"
+  external-docs:
+    description: "Starcom website"
+    url: "https://starcom.io"
+  security:
+    name: "bearerAuth"
+    description: "JWT auth description"
+    scheme: "bearer"
+    type: "http"
+    bearerFormat: "JWT"
+    in: "header"

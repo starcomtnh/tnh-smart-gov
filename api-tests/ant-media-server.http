@@ -1,0 +1,21 @@
+### Create new ip camera
+POST http://10.73.30.89:5080/LiveApp/rest/v2/broadcasts/create
+Content-Type: application/json
+
+{
+  "name": "Camera001",
+  "streamUrl": "rtsp://abcd:aabb1234@14.161.253.235:3451/Streaming/Channels/101",
+  "type": "ipCamera",
+  "username": "abcd",
+  "password": "aabb1234"
+}
+
+### create new ip camera with custom stream id
+POST http://10.73.30.89:5080/LiveApp/rest/v2/broadcasts/create
+Content-Type: application/json
+
+{
+  "name": "Test",
+  "streamUrl": "rtsp://127.0.0.1:8554/test",
+  "type": "ipCamera"
+}

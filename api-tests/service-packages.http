@@ -1,0 +1,8 @@
+### Assign features to a service package
+POST {{base_url}}/service-packages/8e8782f3-6fed-45f5-9ea5-d71a61a602e2/assign-features HTTP/1.1
+Content-Type: application/json
+Authorization: {{access_token}}
+
+[
+  "b7cf0af1-d31b-4449-8b24-77743a1afadf"
+]

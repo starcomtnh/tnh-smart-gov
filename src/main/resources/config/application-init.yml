@@ -1,0 +1,23 @@
+init:
+  roles:
+    - name: "Administrator"
+      description: "Administrator role"
+    - name: "Manager"
+      description: "Manager role"
+    - name: "User"
+      description: "User role"
+    - name: "Anonymous"
+      description: "Anonymous role"
+  users:
+    - username: "starcom"
+      password: "12345678aA@"
+      first-name: "Doi"
+      last-name: "Nguyen Van"
+      full-name: "Doi Nguyen Van"
+      phone: "0889929898"
+      email: "nvdoi.tnh@gmail.com"
+      avatar-url: "https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50"
+      idn: "072086003192"
+      ial: 2
+      enabled: true
+      role: "Administrator"

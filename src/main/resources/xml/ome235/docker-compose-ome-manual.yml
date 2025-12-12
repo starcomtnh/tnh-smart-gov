@@ -1,0 +1,85 @@
+docker run -d --name redis-ivms \
+--restart unless-stopped \
+-p 6379:6379 \
+redis:latest \
+redis-server --requirepass "ivms@123456"
+
+docker run -d -it --name plb1 \
+--restart unless-stopped \
+-e OME_HOST_IP=127.0.0.1 \
+-v $PLB_DOCKER_HOME_1/conf:/opt/ovenmediaengine/bin/origin_conf \
+-v $PLB_DOCKER_HOME_1/logs:/var/log/ovenmediaengine \
+-p 20001:20001 -p 9091:9091 \
+airensoft/ovenmediaengine:latest
+
+docker run -d -it --name ome1 \
+--restart unless-stopped \
+-e OME_HOST_IP=127.0.0.1 \
+-v $OME_DOCKER_HOME_1/conf:/opt/ovenmediaengine/bin/origin_conf \
+-v $OME_DOCKER_HOME_1/logs:/var/log/ovenmediaengine \
+-p 10001:10001 -p 8081:8081 \
+airensoft/ovenmediaengine:latest
+
+docker run -d -it --name ome2 \
+--restart unless-stopped \
+-e OME_HOST_IP=127.0.0.1 \
+-v $OME_DOCKER_HOME_2/conf:/opt/ovenmediaengine/bin/origin_conf \
+-v $OME_DOCKER_HOME_2/logs:/var/log/ovenmediaengine \
+-p 10002:10002 -p 8082:8082 \
+airensoft/ovenmediaengine:latest
+
+docker run -d -it --name ome3 \
+--restart unless-stopped \
+-e OME_HOST_IP=127.0.0.1 \
+-v $OME_DOCKER_HOME_3/conf:/opt/ovenmediaengine/bin/origin_conf \
+-v $OME_DOCKER_HOME_3/logs:/var/log/ovenmediaengine \
+-p 10003:10003 -p 8083:8083 \
+airensoft/ovenmediaengine:latest
+
+docker run -d -it --name ome4 \
+--restart unless-stopped \
+-e OME_HOST_IP=127.0.0.1 \
+-v $OME_DOCKER_HOME_4/conf:/opt/ovenmediaengine/bin/origin_conf \
+-v $OME_DOCKER_HOME_4/logs:/var/log/ovenmediaengine \
+-p 10004:10004 -p 8084:8084 \
+airensoft/ovenmediaengine:latest
+
+docker run -d -it --name ome5 \
+--restart unless-stopped \
+-e OME_HOST_IP=127.0.0.1 \
+-v $OME_DOCKER_HOME_5/conf:/opt/ovenmediaengine/bin/origin_conf \
+-v $OME_DOCKER_HOME_5/logs:/var/log/ovenmediaengine \
+-p 10005:10005 -p 8085:8085 \
+airensoft/ovenmediaengine:latest
+
+docker run -d -it --name ome6 \
+--restart unless-stopped \
+-e OME_HOST_IP=127.0.0.1 \
+-v $OME_DOCKER_HOME_6/conf:/opt/ovenmediaengine/bin/origin_conf \
+-v $OME_DOCKER_HOME_6/logs:/var/log/ovenmediaengine \
+-p 10006:10006 -p 8086:8086 \
+airensoft/ovenmediaengine:latest
+
+docker run -d -it --name ome7 \
+--restart unless-stopped \
+-e OME_HOST_IP=127.0.0.1 \
+-v $OME_DOCKER_HOME_7/conf:/opt/ovenmediaengine/bin/origin_conf \
+-v $OME_DOCKER_HOME_7/logs:/var/log/ovenmediaengine \
+-p 10007:10007 -p 8087:8087 \
+airensoft/ovenmediaengine:latest
+
+docker run -d -it --name ome8 \
+--restart unless-stopped \
+-e OME_HOST_IP=127.0.0.1 \
+-v $OME_DOCKER_HOME_8/conf:/opt/ovenmediaengine/bin/origin_conf \
+-v $OME_DOCKER_HOME_8/logs:/var/log/ovenmediaengine \
+-p 10008:10008 -p 8088:8088 \
+airensoft/ovenmediaengine:latest
+
+docker run -d -it --name ome9 \
+--restart unless-stopped \
+-e OME_HOST_IP=127.0.0.1 \
+-v $OME_DOCKER_HOME_9/conf:/opt/ovenmediaengine/bin/origin_conf \
+-v $OME_DOCKER_HOME_9/logs:/var/log/ovenmediaengine \
+-p 10009:10009 -p 8089:8089 \
+airensoft/ovenmediaengine:latest

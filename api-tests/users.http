@@ -1,0 +1,102 @@
+### Create a user
+POST {{base_url}}/users HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{access_token}}
+
+{
+  "username": "doinv1.tnh",
+  "password": "12345678aA@",
+  "first_name": "Doi1",
+  "last_name": "Nguyen Van",
+  "full_name": "Doi1 Nguyen Van",
+  "phone": "0987654325",
+  "email": "doinv1.tnh@gmail.com",
+  "avatar_url": "https://example.com/avatar.jpg",
+  "idn": "1234567899",
+  "ial": 2,
+  "enabled": true,
+  "role": "9f54d07d-bfdb-42d2-99bb-63ca768081dc"
+}
+
+### Update a user
+PUT {{base_url}}/users/e3c4167f-01b1-4bd7-8e55-64184cac8a13 HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{access_token}}
+
+{
+  "username": "starcom",
+  "password": "12345678aA@",
+  "first_name": "Đời",
+  "last_name": "Nguyễn Văn",
+  "full_name": "Đời Nguyễn Văn",
+  "phone": "0889929898",
+  "email": "doinv.tnh@gmail.com",
+  "avatar_url": "https://example.com/avatar.jpg",
+  "idn": "072086003192",
+  "ial": 2,
+  "enabled": true,
+  "role": "9f54d07d-bfdb-42d2-99bb-63ca768081dc"
+}
+
+### Enable a user
+PUT {{base_url}}/users/1/enable HTTP/1.1
+Authorization: {{access_token}}
+
+### Disable a user
+PUT {{base_url}}/users/1/disable HTTP/1.1
+Authorization: {{access_token}}
+
+### Lock a user
+PUT {{base_url}}/users/1/lock HTTP/1.1
+Authorization: {{access_token}}
+
+### Unlock a user
+PUT {{base_url}}/users/1/unlock HTTP/1.1
+Authorization: {{access_token}}
+
+### Reset failed login attempts
+PUT {{base_url}}/users/1/reset-failed-login-attempts HTTP/1.1
+Authorization: {{access_token}}
+
+### Change password
+PUT {{base_url}}/users/1/change-password HTTP/1.1
+Content-Type: application/json
+Authorization: {{access_token}}
+
+{
+  "password_old": "string",
+  "password_new": "string",
+  "password_new_confirm": "string"
+}
+
+### Reset password
+PUT {{base_url}}/users/1/reset-password HTTP/1.1
+Authorization: {{access_token}}
+
+### Find an user by token
+GET {{base_url}}/users/by-token HTTP/1.1
+Authorization: {{access_token}}
+
+### Find all users without organization
+GET {{base_url}}/users/without-organization/1 HTTP/1.1
+Authorization: {{access_token}}
+
+### Find all users without organization with pagination
+GET {{base_url}}/users/without-organization/1/pagination HTTP/1.1
+Authorization: {{access_token}}
+
+### Find all users without role
+GET {{base_url}}/users/without-role/1 HTTP/1.1
+Authorization: {{access_token}}
+
+### Find all users without role with pagination
+GET {{base_url}}/users/without-role/1/pagination HTTP/1.1
+Authorization: {{access_token}}
+
+### Find all users by role
+GET {{base_url}}/users/by-role/1 HTTP/1.1
+Authorization: {{access_token}}
+
+### Find all users by role with pagination
+GET {{base_url}}/users/by-role/1/pagination HTTP/1.1
+Authorization: {{access_token}}

@@ -1,0 +1,92 @@
+### Create a new zone
+POST {{base_url}}/zones HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{access_token}}
+
+{
+  "name": "Zone 0003",
+  "description": "Desc 003",
+  "longitude": 0.1,
+  "latitude": 0.1,
+  "location": "Location 003",
+  "organization_id": "76c63fe8-2433-42be-a2c7-167e4211dc0c"
+}
+
+### Assign all zones to a parent unit
+POST {{base_url}}/zones/de80af66-87b7-4aff-a277-a66f68386e2b/assign-zones HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{access_token}}
+
+[
+  "a25270cd-8073-427e-957d-ab602cc426d1",
+  "eb3365d5-2e9c-4985-8f66-651e6472d0e4"
+]
+
+### Remove all zones from a parent unit
+POST {{base_url}}/zones/1/remove-zones HTTP/1.1
+Content-Type: application/json
+Authorization: {{access_token}}
+
+[
+  "1234567890"
+]
+
+### Assign all camera devices to a zone
+POST {{base_url}}/zones/a25270cd-8073-427e-957d-ab602cc426d1/assign-camera-devices HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{access_token}}
+
+[
+  "cec3fb21-e061-46b4-b3c6-8be8baa5efe3",
+  "d3551a51-c7fd-4377-aa1a-e07bee8fbccf"
+]
+
+### Assign all users to a zone
+POST {{base_url}}/zones/03f9ade5-5ad3-4660-b9c1-0e2a20a3abb7/assign-users HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{access_token}}
+
+[
+  "43e446d1-33c4-469b-8e34-11c98054dd42"
+]
+
+### Assign all camera devices to a zone
+POST {{base_url}}/zones/de80af66-87b7-4aff-a277-a66f68386e2b/assign-camera-devices HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{access_token}}
+
+[
+  "6ff89a76-c690-41c5-8d73-5c6e0bc269b2",
+  "fc955bec-e147-44b3-8b90-552c80834ee3",
+  "1deb966f-4b65-4966-abca-51440fa01560",
+  "256cb5af-ff67-4ff6-9163-bc9054b4e7b0",
+  "96f53372-9655-4141-8f0a-24a92bbaf3ce",
+  "ed6d3f92-5081-4e1a-bba3-e201b0b39f53",
+  "a070e44f-d098-4f81-84b4-bc2317014e9e",
+  "f3bb5c89-9541-4587-b92b-f6f009a5bec0",
+  "456a993c-57b2-4d3c-8d1e-a0d7473a689c",
+  "6b0468e9-8740-433c-af1c-beb106b2642a",
+  "3196d2bd-5d4b-47b5-8a00-d1cdf4e3ce3e",
+  "e9b70760-f83b-4ae1-9bcd-81223c349454",
+  "30d739b5-0cb5-4996-9cfc-77080676aba2",
+  "a03252f5-a5bb-41bb-a3ce-675f5b1f4a6f",
+  "2d028d12-5e7a-446d-9b4c-c4bdce5722de",
+  "ac09094c-364d-4857-bf6a-8bd891f5e123",
+  "6364912b-6c18-4075-9592-f20141105768",
+  "64110b93-37c4-4af5-9293-1c68500f7648",
+  "1b9a0fe6-f55d-42f7-84a8-1382c1d06d6b",
+  "91ecaa79-8a7c-4db8-b284-41d5148dbe66",
+  "e195c940-1e7c-4abf-b49a-07d7a12fe26c",
+  "61d523b7-84c1-458d-a477-fc296826f465",
+  "1985ee66-d261-47d2-9e03-62894dacb659",
+  "6b2fb9aa-6753-4e3b-a55a-017667c855a3",
+  "1a03214c-67e4-4862-9ce6-15ade1102ebf",
+  "720dce76-a00e-4a8f-b313-97a5e226aabe",
+  "ac6ce1bb-443b-4f56-9442-43a75096b1fd",
+  "48ec68ce-ce44-4b18-b2fa-5e5a4c8d209a",
+  "c66cb1b2-9de8-4f91-b355-2e4ef49b3f0b",
+  "c5c008c8-b63b-4929-8337-506f2b8dfda5",
+  "9f7d4dae-51ec-40c6-8693-d9cae66d7301",
+  "e0758dc6-f448-4a20-9870-4eeac782b0dc"
+]
+

@@ -1,0 +1,16 @@
+baseware:
+  core:
+    uri:
+      bypass:
+        - "/api/v1/auth/**"
+        - "/api/v1/payment/viettin/confirm"
+        - "/actuator/**"
+        - "/v3/api-docs/**"
+        - "/redoc.html"
+        - "/api-docs/**"
+        - "/swagger-ui/**"
+        - "/swagger-resources/**"
+        - "/swagger-ui.html"
+        - "/webjars/**"
+        - "/favicon.ico"
+        - "/error"

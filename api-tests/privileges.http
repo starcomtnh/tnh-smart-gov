@@ -1,0 +1,19 @@
+### Find all resource names
+GET {{base_url}}/privileges/resource-names HTTP/1.1
+Authorization: {{access_token}}
+
+### Find all privileges by resource name
+GET {{base_url}}/privileges/by-resource-name/Privilege Management API HTTP/1.1
+Authorization: {{access_token}}
+
+### Find all privileges by resource name with pagination
+GET {{base_url}}/privileges/by-resource-name/Privilege Management API HTTP/1.1
+Authorization: {{access_token}}
+
+### Find all privileges by a role
+GET {{base_url}}/privileges/by-role/1 HTTP/1.1
+Authorization: {{access_token}}
+
+### Find all privileges in a role with pagination
+GET {{base_url}}/privileges/by-role/1/pagination HTTP/1.1
+Authorization: {{access_token}}

@@ -1,0 +1,151 @@
+services:
+  es:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.10.2
+    container_name: es-ivms
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=false
+    volumes:
+      - ${ELASTIC_DOCKER_HOME}/data:/usr/share/elasticsearch/data
+      - ${ELASTIC_DOCKER_HOME}/config:/usr/share/elasticsearch/config
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    restart: unless-stopped
+
+  redis:
+    image: redis:latest
+    container_name: redis-ivms
+    ports:
+      - "6379:6379"
+    restart: unless-stopped
+
+  plb1:
+    container_name: plb1
+    image: airensoft/ovenmediaengine:latest
+    environment:
+      - OME_HOST_IP=127.0.0.1
+    volumes:
+      - ${PLB_DOCKER_HOME_1}/conf:/opt/ovenmediaengine/bin/origin_conf
+      - ${PLB_DOCKER_HOME_1}/logs:/var/log/ovenmediaengine
+    ports:
+      - "20001:20001"
+      - "9091:9091"
+    restart: unless-stopped
+
+  ome1:
+    container_name: ome1
+    image: airensoft/ovenmediaengine:latest
+    environment:
+      - OME_HOST_IP=127.0.0.1
+    volumes:
+      - ${OME_DOCKER_HOME_1}/conf:/opt/ovenmediaengine/bin/origin_conf
+      - ${OME_DOCKER_HOME_1}/logs:/var/log/ovenmediaengine
+    ports:
+      - "10001:10001"
+      - "8081:8081"
+    restart: unless-stopped
+
+  ome2:
+    container_name: ome2
+    image: airensoft/ovenmediaengine:latest
+    environment:
+      - OME_HOST_IP=127.0.0.1
+    volumes:
+      - ${OME_DOCKER_HOME_2}/conf:/opt/ovenmediaengine/bin/origin_conf
+      - ${OME_DOCKER_HOME_2}/logs:/var/log/ovenmediaengine
+    ports:
+      - "10002:10002"
+      - "8082:8082"
+    restart: unless-stopped
+
+  ome3:
+    container_name: ome3
+    image: airensoft/ovenmediaengine:latest
+    environment:
+      - OME_HOST_IP=127.0.0.1
+    volumes:
+      - ${OME_DOCKER_HOME_3}/conf:/opt/ovenmediaengine/bin/origin_conf
+      - ${OME_DOCKER_HOME_3}/logs:/var/log/ovenmediaengine
+    ports:
+      - "10003:10003"
+      - "8083:8083"
+    restart: unless-stopped
+
+  ome4:
+    container_name: ome4
+    image: airensoft/ovenmediaengine:latest
+    environment:
+      - OME_HOST_IP=127.0.0.1
+    volumes:
+      - ${OME_DOCKER_HOME_4}/conf:/opt/ovenmediaengine/bin/origin_conf
+      - ${OME_DOCKER_HOME_4}/logs:/var/log/ovenmediaengine
+    ports:
+      - "10004:10004"
+      - "8084:8084"
+    restart: unless-stopped
+
+  ome5:
+    container_name: ome5
+    image: airensoft/ovenmediaengine:latest
+    environment:
+      - OME_HOST_IP=127.0.0.1
+    volumes:
+      - ${OME_DOCKER_HOME_5}/conf:/opt/ovenmediaengine/bin/origin_conf
+      - ${OME_DOCKER_HOME_5}/logs:/var/log/ovenmediaengine
+    ports:
+      - "10005:10005"
+      - "8085:8085"
+    restart: unless-stopped
+
+  ome6:
+    container_name: ome6
+    image: airensoft/ovenmediaengine:latest
+    environment:
+      - OME_HOST_IP=127.0.0.1
+    volumes:
+      - ${OME_DOCKER_HOME_6}/conf:/opt/ovenmediaengine/bin/origin_conf
+      - ${OME_DOCKER_HOME_6}/logs:/var/log/ovenmediaengine
+    ports:
+      - "10006:10006"
+      - "8086:8086"
+    restart: unless-stopped
+
+  ome7:
+    container_name: ome7
+    image: airensoft/ovenmediaengine:latest
+    environment:
+      - OME_HOST_IP=127.0.0.1
+    volumes:
+      - ${OME_DOCKER_HOME_7}/conf:/opt/ovenmediaengine/bin/origin_conf
+      - ${OME_DOCKER_HOME_7}/logs:/var/log/ovenmediaengine
+    ports:
+      - "10007:10007"
+      - "8087:8087"
+    restart: unless-stopped
+
+  ome8:
+    container_name: ome8
+    image: airensoft/ovenmediaengine:latest
+    environment:
+      - OME_HOST_IP=127.0.0.1
+    volumes:
+      - ${OME_DOCKER_HOME_8}/conf:/opt/ovenmediaengine/bin/origin_conf
+      - ${OME_DOCKER_HOME_8}/logs:/var/log/ovenmediaengine
+    ports:
+      - "10006:10006"
+      - "8086:8086"
+    restart: unless-stopped
+
+  ome9:
+    container_name: ome9
+    image: airensoft/ovenmediaengine:latest
+    environment:
+      - OME_HOST_IP=127.0.0.1
+    volumes:
+      - ${OME_DOCKER_HOME_8}/conf:/opt/ovenmediaengine/bin/origin_conf
+      - ${OME_DOCKER_HOME_8}/logs:/var/log/ovenmediaengine
+    ports:
+      - "10009:10009"
+      - "8089:8089"
+    restart: unless-stopped

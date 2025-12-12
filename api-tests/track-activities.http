@@ -1,0 +1,3 @@
+### Get track activity detail
+GET {{base_url}}/track-activities/1/detail
+Authorization: {{access_token}}

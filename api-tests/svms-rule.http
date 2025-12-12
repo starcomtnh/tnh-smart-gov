@@ -1,0 +1,663 @@
+### Create a new Camera Server
+# @name createCameraServer
+POST {{base_url}}/camera-servers
+Content-Type: application/json
+Authorization: Bearer {{access_token}}
+
+{
+  "name": "Camera Server 1",
+  "ip_address": "192.168.1.100",
+  "port": 8080,
+  "protocol": "HTTPS",
+  "manufacturer": "Hikvision",
+  "model": "DS-7616NI-K2",
+  "username": "admin",
+  "password": "Admin123",
+  "status": "ACTIVE",
+  "is_internal": 1,
+  "longitude": 105.8341598,
+  "latitude": 21.0277644,
+  "location": "Server Room A"
+}
+
+### Create a new Organization
+# @name createOrganization
+POST {{base_url}}/organizations
+Content-Type: application/json
+Authorization: Bearer {{access_token}}
+
+{
+  "name": "Security Department",
+  "code": "SEC-DEPT",
+  "country_code": "VN",
+  "province_code": "HN",
+  "commune_code": "CG",
+  "address": "123 Security Street, Hanoi",
+  "phone": "+84123456789",
+  "email": "security@example.com",
+  "website": "https://security.example.com",
+  "description": "Department responsible for security management",
+  "latitude": 21.0277644,
+  "longitude": 105.8341598,
+  "level": 2
+}
+
+### Create a new Zone
+# @name createZone
+POST {{base_url}}/zones
+Content-Type: application/json
+Authorization: Bearer {{access_token}}
+
+{
+  "name": "Security Zone A",
+  "description": "Main entrance security monitoring zone",
+  "longitude": 105.8342598,
+  "latitude": 21.0278644,
+  "location": "Main Entrance",
+  "organization_id": "76c63fe8-2433-42be-a2c7-167e4211dc0c"
+}
+
+### Create a new Camera Device 001
+# @name createCameraDevice
+POST {{base_url}}/camera-devices
+Content-Type: application/json
+Authorization: Bearer {{access_token}}
+
+{
+  "name": "CAM-FD-001",
+  "code": "CAM-FD-001",
+  "channel": 1,
+  "camera_identifier": "FD-001",
+  "stream_url": "rtsp://abcd:aabb1234@14.161.253.235:3463/Streaming/Channels/101",
+  "description": "Camera 001 at the front entrance",
+  "recording_enabled": true,
+  "type": "PTZ",
+  "status": "ACTIVE",
+  "vendor": "HIKVISION",
+  "latitude": 21.0277644,
+  "longitude": 105.8341598,
+  "location": "Front Entrance",
+  "camera_server_id": "59733b3c-61ea-4df4-9309-7077fa35419a",
+  "zone_id": "8278e0bc-d7be-42cc-afed-0630607cda97"
+}
+
+### Create a new Camera Device 002
+POST {{base_url}}/camera-devices
+Content-Type: application/json
+Authorization: Bearer {{access_token}}
+
+{
+  "name": "CAM-FD-002",
+  "code": "CAM-FD-002",
+  "channel": 1,
+  "camera_identifier": "FD-002",
+  "stream_url": "rtsp://abcd:aabb1234@14.161.253.235:3464/Streaming/Channels/101",
+  "description": "Camera 002 at the front entrance",
+  "recording_enabled": true,
+  "type": "PTZ",
+  "status": "ACTIVE",
+  "vendor": "HIKVISION",
+  "latitude": 21.0277644,
+  "longitude": 105.8341598,
+  "location": "Front Entrance",
+  "camera_server_id": "59733b3c-61ea-4df4-9309-7077fa35419a",
+  "zone_id": "8278e0bc-d7be-42cc-afed-0630607cda97"
+}
+
+### Create a new Camera Device 003
+POST {{base_url}}/camera-devices
+Content-Type: application/json
+Authorization: Bearer {{access_token}}
+
+{
+  "name": "CAM-FD-003",
+  "code": "CAM-FD-003",
+  "channel": 1,
+  "camera_identifier": "FD-001",
+  "stream_url": "rtsp://abcd:aabb1234@14.161.253.235:3465/Streaming/Channels/101",
+  "description": "Camera 003 at the front entrance",
+  "recording_enabled": true,
+  "type": "PTZ",
+  "status": "ACTIVE",
+  "vendor": "HIKVISION",
+  "latitude": 21.0277644,
+  "longitude": 105.8341598,
+  "location": "Front Entrance",
+  "camera_server_id": "59733b3c-61ea-4df4-9309-7077fa35419a",
+  "zone_id": "8278e0bc-d7be-42cc-afed-0630607cda97"
+}
+
+### Create a new Camera Device 004
+POST {{base_url}}/camera-devices
+Content-Type: application/json
+Authorization: Bearer {{access_token}}
+
+{
+  "name": "CAM-FD-004",
+  "code": "CAM-FD-004",
+  "channel": 1,
+  "camera_identifier": "FD-001",
+  "stream_url": "rtsp://abcd:aabb1234@14.161.253.235:3466/Streaming/Channels/101",
+  "description": "Camera 004 at the front entrance",
+  "recording_enabled": true,
+  "type": "PTZ",
+  "status": "ACTIVE",
+  "vendor": "HIKVISION",
+  "latitude": 21.0277644,
+  "longitude": 105.8341598,
+  "location": "Front Entrance",
+  "camera_server_id": "59733b3c-61ea-4df4-9309-7077fa35419a",
+  "zone_id": "8278e0bc-d7be-42cc-afed-0630607cda97"
+}
+
+### Create a new Camera Device 005
+POST {{base_url}}/camera-devices
+Content-Type: application/json
+Authorization: Bearer {{access_token}}
+
+{
+  "name": "CAM-FD-005",
+  "code": "CAM-FD-005",
+  "channel": 1,
+  "camera_identifier": "FD-001",
+  "stream_url": "rtsp://abcd:aabb1234@14.161.253.235:3467/Streaming/Channels/101",
+  "description": "Camera 005 at the front entrance",
+  "recording_enabled": true,
+  "type": "PTZ",
+  "status": "ACTIVE",
+  "vendor": "HIKVISION",
+  "latitude": 21.0277644,
+  "longitude": 105.8341598,
+  "location": "Front Entrance",
+  "camera_server_id": "59733b3c-61ea-4df4-9309-7077fa35419a",
+  "zone_id": "8278e0bc-d7be-42cc-afed-0630607cda97"
+}
+
+### Create a new Camera Device 006
+POST {{base_url}}/camera-devices
+Content-Type: application/json
+Authorization: Bearer {{access_token}}
+
+{
+  "name": "CAM-FD-006",
+  "code": "CAM-FD-006",
+  "channel": 1,
+  "camera_identifier": "FD-001",
+  "stream_url": "rtsp://abcd:aabb1234@14.161.253.235:3468/Streaming/Channels/101",
+  "description": "Camera 006 at the front entrance",
+  "recording_enabled": true,
+  "type": "PTZ",
+  "status": "ACTIVE",
+  "vendor": "HIKVISION",
+  "latitude": 21.0277644,
+  "longitude": 105.8341598,
+  "location": "Front Entrance",
+  "camera_server_id": "59733b3c-61ea-4df4-9309-7077fa35419a",
+  "zone_id": "8278e0bc-d7be-42cc-afed-0630607cda97"
+}
+
+### Create a new Camera Device 007
+POST {{base_url}}/camera-devices
+Content-Type: application/json
+Authorization: Bearer {{access_token}}
+
+{
+  "name": "CAM-FD-007",
+  "code": "CAM-FD-007",
+  "channel": 1,
+  "camera_identifier": "FD-001",
+  "stream_url": "rtsp://abcd:aabb1234@14.161.253.235:3469/Streaming/Channels/101",
+  "description": "Camera 007 at the front entrance",
+  "recording_enabled": true,
+  "type": "PTZ",
+  "status": "ACTIVE",
+  "vendor": "HIKVISION",
+  "latitude": 21.0277644,
+  "longitude": 105.8341598,
+  "location": "Front Entrance",
+  "camera_server_id": "59733b3c-61ea-4df4-9309-7077fa35419a",
+  "zone_id": "8278e0bc-d7be-42cc-afed-0630607cda97"
+}
+
+### Create a new Camera Device 008
+POST {{base_url}}/camera-devices
+Content-Type: application/json
+Authorization: Bearer {{access_token}}
+
+{
+  "name": "CAM-FD-008",
+  "code": "CAM-FD-008",
+  "channel": 1,
+  "camera_identifier": "FD-001",
+  "stream_url": "rtsp://abcd:aabb1234@14.161.253.235:3470/Streaming/Channels/101",
+  "description": "Camera 008 at the front entrance",
+  "recording_enabled": true,
+  "type": "PTZ",
+  "status": "ACTIVE",
+  "vendor": "HIKVISION",
+  "latitude": 21.0277644,
+  "longitude": 105.8341598,
+  "location": "Front Entrance",
+  "camera_server_id": "59733b3c-61ea-4df4-9309-7077fa35419a",
+  "zone_id": "8278e0bc-d7be-42cc-afed-0630607cda97"
+}
+
+### Create a new Camera Device 009
+POST {{base_url}}/camera-devices
+Content-Type: application/json
+Authorization: Bearer {{access_token}}
+
+{
+  "name": "CAM-FD-009",
+  "code": "CAM-FD-009",
+  "channel": 1,
+  "camera_identifier": "FD-001",
+  "stream_url": "rtsp://abcd:aabb1234@14.161.253.235:3471/Streaming/Channels/101",
+  "description": "Camera 009 at the front entrance",
+  "recording_enabled": true,
+  "type": "PTZ",
+  "status": "ACTIVE",
+  "vendor": "HIKVISION",
+  "latitude": 21.0277644,
+  "longitude": 105.8341598,
+  "location": "Front Entrance",
+  "camera_server_id": "59733b3c-61ea-4df4-9309-7077fa35419a",
+  "zone_id": "8278e0bc-d7be-42cc-afed-0630607cda97"
+}
+
+### Create a new Camera Device 010
+POST {{base_url}}/camera-devices
+Content-Type: application/json
+Authorization: Bearer {{access_token}}
+
+{
+  "name": "CAM-FD-010",
+  "code": "CAM-FD-010",
+  "channel": 1,
+  "camera_identifier": "FD-001",
+  "stream_url": "rtsp://abcd:aabb1234@14.161.253.235:3472/Streaming/Channels/101",
+  "description": "Camera 010 at the front entrance",
+  "recording_enabled": true,
+  "type": "PTZ",
+  "status": "ACTIVE",
+  "vendor": "HIKVISION",
+  "latitude": 21.0277644,
+  "longitude": 105.8341598,
+  "location": "Front Entrance",
+  "camera_server_id": "59733b3c-61ea-4df4-9309-7077fa35419a",
+  "zone_id": "8278e0bc-d7be-42cc-afed-0630607cda97"
+}
+
+### Create a new Agent
+# @name createAgent
+POST {{base_url}}/agents
+Content-Type: application/json
+Authorization: Bearer {{access_token}}
+
+{
+  "code": "AGT-001",
+  "name": "John Smith",
+  "phone": "+84987654321",
+  "email": "john.smith@example.com",
+  "idn": "ID123456789",
+  "agent_role": "SALES",
+  "note": "Senior security technician",
+  "active": true,
+  "internal_user_id": "0c6ab9cd-1737-4b2f-abf6-9377837cfc17"
+}
+
+### Create a new Agent (AGT-002)
+# @name createAgent002
+POST {{base_url}}/agents
+Content-Type: application/json
+Authorization: Bearer {{access_token}}
+
+{
+  "code": "AGT-002",
+  "name": "Sarah Johnson",
+  "phone": "+84987654322",
+  "email": "sarah.johnson@example.com",
+  "idn": "ID234567890",
+  "agent_role": "SALES",
+  "note": "Security operations supervisor",
+  "active": true,
+  "internal_user_id": "0c6ab9cd-1737-4b2f-abf6-9377837cfc17"
+}
+
+### Create a new Agent (AGT-003)
+# @name createAgent003
+POST {{base_url}}/agents
+Content-Type: application/json
+Authorization: Bearer {{access_token}}
+
+{
+  "code": "AGT-003",
+  "name": "Michael Chen",
+  "phone": "+84987654323",
+  "email": "michael.chen@example.com",
+  "idn": "ID345678901",
+  "agent_role": "TECHNICIAN",
+  "note": "Camera installation specialist",
+  "active": true,
+  "internal_user_id": "32bfbe9d-d509-40b8-b522-44bd34c57305"
+}
+
+### Create a new Agent (AGT-004)
+# @name createAgent004
+POST {{base_url}}/agents
+Content-Type: application/json
+Authorization: Bearer {{access_token}}
+
+{
+  "code": "AGT-004",
+  "name": "Linh Nguyen",
+  "phone": "+84987654324",
+  "email": "linh.nguyen@example.com",
+  "idn": "ID456789012",
+  "agent_role": "MANAGER",
+  "note": "Regional security manager",
+  "active": true,
+  "internal_user_id": "32bfbe9d-d509-40b8-b522-44bd34c57305"
+}
+
+### Create a new Service Package
+# @name createServicePackage
+POST {{base_url}}/service-packages
+Content-Type: application/json
+Authorization: Bearer {{access_token}}
+
+{
+  "code": "BASIC-PKG",
+  "name": "Basic Camera Service Package",
+  "description": "Entry-level camera service package with essential features",
+  "base_price": 29.99,
+  "max_camera_allowed": 5,
+  "max_stream_allowed": 100,
+  "max_playback_allowed": 100,
+  "playback_days": 7,
+  "auto_renew": true,
+  "enabled": true
+}
+
+### Create a Standard Service Package
+# @name createStandardServicePackage
+POST {{base_url}}/service-packages
+Content-Type: application/json
+Authorization: Bearer {{access_token}}
+
+{
+  "code": "STD-PKG",
+  "name": "Standard Camera Service Package",
+  "description": "Standard camera service package with expanded features",
+  "base_price": 49.99,
+  "max_camera_allowed": 10,
+  "max_stream_allowed": 5,
+  "max_playback_allowed": 3,
+  "playback_days": 14,
+  "auto_renew": true,
+  "enabled": true
+}
+
+### Create a Premium Service Package
+# @name createPremiumServicePackage
+POST {{base_url}}/service-packages
+Content-Type: application/json
+Authorization: Bearer {{access_token}}
+
+{
+  "code": "PREM-PKG",
+  "name": "Premium Camera Service Package",
+  "description": "Premium camera service package with all features included",
+  "base_price": 99.99,
+  "max_camera_allowed": 20,
+  "max_stream_allowed": 10,
+  "max_playback_allowed": 5,
+  "playback_days": 30,
+  "auto_renew": true,
+  "enabled": true
+}
+
+### Create a ServicePackageFeature - Live Streaming
+# @name createLiveStreamingFeature
+POST {{base_url}}/service-package-features
+Content-Type: application/json
+Authorization: Bearer {{access_token}}
+
+{
+  "name": "Live Streaming",
+  "description": "Access to real-time camera streaming capabilities"
+}
+
+### Create a ServicePackageFeature - Cloud Storage
+# @name createCloudStorageFeature
+POST {{base_url}}/service-package-features
+Content-Type: application/json
+Authorization: Bearer {{access_token}}
+
+{
+  "name": "Cloud Storage",
+  "description": "Video storage in secure cloud servers"
+}
+
+### Create a ServicePackageFeature - Motion Detection
+# @name createMotionDetectionFeature
+POST {{base_url}}/service-package-features
+Content-Type: application/json
+Authorization: Bearer {{access_token}}
+
+{
+  "name": "Motion Detection",
+  "description": "Automated detection and alerts for motion events"
+}
+
+### Create a ServicePackageFeature - Video Analytics
+# @name createVideoAnalyticsFeature
+POST {{base_url}}/service-package-features
+Content-Type: application/json
+Authorization: Bearer {{access_token}}
+
+{
+  "name": "Video Analytics",
+  "description": "Advanced AI-powered video analysis capabilities"
+}
+
+### Create a ServicePackageFeature - Mobile Access
+# @name createMobileAccessFeature
+POST {{base_url}}/service-package-features
+Content-Type: application/json
+Authorization: Bearer {{access_token}}
+
+{
+  "name": "Mobile Access",
+  "description": "Access to camera feeds from mobile devices"
+}
+
+### Assign features to Basic Service Package
+# @name assignBasicServicePackageFeatures
+POST {{base_url}}/service-packages/646c4fda-23ed-46ff-b79a-341b874ccc2d/assign-features
+Content-Type: application/json
+Authorization: Bearer {{access_token}}
+
+[
+  "4f944b05-dfb2-4974-936c-82accb0de20e",
+  "01ce5f7c-8dff-4934-9022-bea964cc3e82",
+  "8dc822d0-1a73-44ab-a4fe-21d1c91b4b25",
+  "54a57d83-2094-43fc-ae27-32f80b9e7f14",
+  "4434b8bc-e4ac-4ef2-8d6b-c1406830b45d"
+]
+
+### Assign Options to a Service Package
+# @name assignOptionsToServicePackage
+POST {{base_url}}/service-packages/646c4fda-23ed-46ff-b79a-341b874ccc2d/assign-options
+Content-Type: application/json
+Authorization: Bearer {{access_token}}
+
+[
+  {
+    "name": "Monthly Subscription",
+    "description": "Pay monthly for camera services",
+    "duration_in_months": 1,
+    "price": 29.99,
+    "discount_percent": 0,
+    "auto_renew": true
+  },
+  {
+    "name": "Annual Subscription",
+    "description": "Pay annually for camera services with discount",
+    "duration_in_months": 12,
+    "price": 299.99,
+    "discount_percent": 16,
+    "auto_renew": true
+  },
+  {
+    "name": "Biennial Plan",
+    "description": "Two-year subscription plan with maximum savings",
+    "duration_in_months": 24,
+    "price": 575.99,
+    "discount_percent": 20,
+    "auto_renew": false
+  }
+]
+
+### Assign Promotion Policies to a Service Package
+# @name assignPromotionsToServicePackage
+POST {{base_url}}/service-packages/646c4fda-23ed-46ff-b79a-341b874ccc2d/assign-promotions
+Content-Type: application/json
+Authorization: Bearer {{access_token}}
+
+[
+  {
+    "name": "Spring Sale 2025",
+    "description": "Special discount for the spring season",
+    "discount_percent": 15.0,
+    "start_date": "01/05/2025 00:00:00",
+    "end_date": "31/12/2025 23:59:59"
+  },
+  {
+    "name": "New Customer Discount",
+    "description": "Special offer for new customers",
+    "discount_percent": 10.0,
+    "start_date": "01/05/2025 00:00:00",
+    "end_date": "31/12/2025 23:59:59"
+  }
+]
+
+### Assign Commission Policies to a Service Package
+# @name assignCommissionsToServicePackage
+POST {{base_url}}/service-packages/646c4fda-23ed-46ff-b79a-341b874ccc2d/assign-commissions
+Content-Type: application/json
+Authorization: Bearer {{access_token}}
+
+[
+  {
+    "name": "Standard Sales Commission",
+    "description": "Regular commission for sales agents",
+    "commission_percent": 5.0,
+    "start_date": "01/05/2025 00:00:00",
+    "end_date": "31/12/2025 23:59:59"
+  },
+  {
+    "name": "Premium Product Bonus",
+    "description": "Higher commission for premium package sales",
+    "commission_percent": 8.5,
+    "start_date": "01/05/2025 00:00:00",
+    "end_date": "31/12/2025 23:59:59"
+  }
+]
+
+### Subscribe a user to a service package
+# @name subscribeUserToServicePackage
+POST {{base_url}}/user-subscriptions/subscribe
+Content-Type: application/json
+Authorization: Bearer {{access_token}}
+
+{
+  "user_id": "0c6ab9cd-1737-4b2f-abf6-9377837cfc17",
+  "sales_agent_id": "e1bd3b76-3bc0-49fe-9324-e4f80c104fa9",
+  "technical_agent_id": "",
+  "support_agent_id": "",
+  "service_package_id": "646c4fda-23ed-46ff-b79a-341b874ccc2d",
+  "service_package_option_id": "5eca7892-c112-4ff2-8a46-40398aaf958f",
+  "promotion_policy_id": "13381821-aa3a-48fd-8cc7-62155716225d",
+  "commission_policy_id": "f04a4f9b-830c-4b3d-9713-feb7787b2a23",
+  "auto_renew": true
+}
+
+### Assign camera devices to a user subscription
+# @name assignCameraDevicesToSubscription
+POST {{base_url}}/user-subscriptions/e01ab2e1-ed96-4cb2-8051-ff0509c0a050/assign-camera-devices
+Content-Type: application/json
+Authorization: Bearer {{access_token}}
+
+[
+  "cec3fb21-e061-46b4-b3c6-8be8baa5efe3",
+  "d3551a51-c7fd-4377-aa1a-e07bee8fbccf",
+  "0a389940-ea29-4b11-860d-652fc2056642"
+]
+
+### Create a new Payment Gateway
+# @name createPaymentGateway
+POST {{base_url}}/payment-gateways
+Content-Type: application/json
+Authorization: Bearer {{access_token}}
+
+{
+  "name": "STARCOM Gateway",
+  "type": "CASH",
+  "providerCode": "STARCOM PRO",
+  "merchantId": "MERCHANT123456",
+  "merchantName": "Security Camera Services",
+  "merchantDomain": "starcom.io",
+  "publicKey": "pk_test_abc123defghijklmnop",
+  "secretKey": "sk_test_xyz987uvwabcdefghij",
+  "apiEndpoint": "https://starcom.io/v1/payments",
+  "webhookUrl": "https://starcom.io/api/webhooks/vnpay",
+  "platform": "CASH",
+  "logoUrl": "https://starcom.io/vnpay-logo.png",
+  "enabled": true,
+  "priority": 1,
+  "configJson": "{\"sandbox\":true,\"returnUrl\":\"https://starcom.io/payment-return\",\"ipnUrl\":\"https://starcom.io/payment-notification\"}",
+  "note": "Starcom integration for online payment processing"
+}
+
+### Create a new Payment
+# @name createPayment
+POST {{base_url}}/payments/create
+Content-Type: application/json
+Authorization: Bearer {{access_token}}
+
+{
+  "user_subscription_id": "e01ab2e1-ed96-4cb2-8051-ff0509c0a050",
+  "payment_gateway_id": "c4be29ab-0503-45fa-b664-ce430ffe9f2c",
+  "amount": 299.99,
+  "method": "ONLINE",
+  "request_info": "{\"redirectUrl\":\"https://vnpay.vn/payment-gateway?orderId=ORDER123\",\"token\":\"payment_token_123456\"}",
+  "note": "Payment for annual subscription plan"
+}
+
+### Confirm a Payment
+# @name confirmPayment
+POST {{base_url}}/payments/32bfbe9d-d509-40b8-b522-44bd34c57305/confirm
+Content-Type: application/json
+Authorization: Bearer {{access_token}}
+
+### Fail a Payment (alternative scenario)
+# @name failPayment
+POST {{base_url}}/payments/32bfbe9d-d509-40b8-b522-44bd34c57305/fail
+Content-Type: application/json
+Authorization: Bearer {{access_token}}
+
+### Start a camera stream
+# @name startCameraStream
+POST {{base_url}}/camera-streams/d20c88d7-102f-4a67-b034-7626780d9e93/start
+Content-Type: application/json
+Authorization: Bearer {{access_token}}
+
+### Stop a camera stream
+# @name stopCameraStream
+POST {{base_url}}/camera-streams/d20c88d7-102f-4a67-b034-7626780d9e93/stop
+Content-Type: application/json
+Authorization: Bearer {{access_token}}
+
+
+

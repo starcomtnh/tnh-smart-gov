@@ -1,0 +1,61 @@
+### Assign all users to a role
+POST {{base_url}}/roles/1/assign-users HTTP/1.1
+Content-Type: application/json
+Authorization: {{access_token}}
+
+[
+  "asdf"
+]
+
+### Remove all users from a role
+POST {{base_url}}/roles/1/remove-users HTTP/1.1
+Content-Type: application/json
+Authorization: {{access_token}}
+
+[
+  "asdf"
+]
+
+### Assign all privileges to a role
+POST {{base_url}}/roles/1/assign-privileges HTTP/1.1
+Content-Type: application/json
+Authorization: {{access_token}}
+
+[
+  "asdf"
+]
+
+### Remove all privileges from a role
+POST {{base_url}}/roles/1/remove-privileges HTTP/1.1
+Content-Type: application/json
+Authorization: {{access_token}}
+
+[
+  "asdf"
+]
+
+### Assign all menus to a role
+POST {{base_url}}/roles/1/assign-menus HTTP/1.1
+Content-Type: application/json
+Authorization: {{access_token}}
+
+[
+  "asdf"
+]
+
+### Remove all menus from a role
+POST {{base_url}}/roles/1/remove-menus HTTP/1.1
+Content-Type: application/json
+Authorization: {{access_token}}
+
+[
+  "asdf"
+]
+
+### Find all roles by menu ID
+GET {{base_url}}/roles/by-menu/1 HTTP/1.1
+Authorization: {{access_token}}
+
+### Find all roles by privilege ID
+GET {{base_url}}/roles/by-privilege/1 HTTP/1.1
+Authorization: {{access_token}}
