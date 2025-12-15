@@ -27,3 +27,4 @@ public class TaskActivityLogDTO extends RepresentationModel<TaskActivityLogDTO> 
     String newValue;
     Instant createdDate;
 }
+
