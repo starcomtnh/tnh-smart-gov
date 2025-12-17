@@ -1,7 +1,8 @@
-package com.tnh.baseware.core.forms.project;
+package com.tnh.baseware.core.forms.task;
 
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
+import com.tnh.baseware.core.enums.task.TaskDependencyType;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -15,14 +16,14 @@ import java.util.UUID;
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
-public class ProjectMemberEditorForm {
+public class TaskDependencyEditorForm {
 
-    @NotNull(message = "{project_id.not.null}")
-    UUID projectId;
+    @NotNull(message = "{from_task_id.not.null}")
+    UUID fromTaskId;
 
-    @NotNull(message = "{user_id.not.null}")
-    UUID userId;
+    @NotNull(message = "{to_task_id.not.null}")
+    UUID toTaskId;
 
-    @NotNull(message = "{role.not.null}")
-    String role;
+    @NotNull(message = "{dependency_type.not.null}")
+    TaskDependencyType dependencyType;
 }

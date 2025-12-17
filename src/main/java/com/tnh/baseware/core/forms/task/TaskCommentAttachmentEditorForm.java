@@ -1,4 +1,4 @@
-package com.tnh.baseware.core.forms.project;
+package com.tnh.baseware.core.forms.task;
 
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
@@ -15,14 +15,11 @@ import java.util.UUID;
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
-public class ProjectMemberEditorForm {
+public class TaskCommentAttachmentEditorForm {
 
-    @NotNull(message = "{project_id.not.null}")
-    UUID projectId;
+    @NotNull(message = "{comment.id.not.null}")
+    UUID commentId;
 
-    @NotNull(message = "{user_id.not.null}")
-    UUID userId;
-
-    @NotNull(message = "{role.not.null}")
-    String role;
+    @NotNull(message = "{file.id.not.null}")
+    UUID fileId;
 }
