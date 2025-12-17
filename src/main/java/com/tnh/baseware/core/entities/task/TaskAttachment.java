@@ -14,7 +14,12 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "task_attachments")
+@Table(
+        name = "task_attachments",
+        uniqueConstraints = {
+                @UniqueConstraint(columnNames = {"task_id", "file_id"})
+        }
+)
 public class TaskAttachment extends Auditable<String> {
 
     @Id
