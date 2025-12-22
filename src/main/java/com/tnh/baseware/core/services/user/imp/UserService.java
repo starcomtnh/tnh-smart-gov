@@ -281,7 +281,7 @@ public class UserService extends GenericService<User, UserEditorForm, UserDTO, I
     public List<UserDTO> findAllByOrganization(UUID id) {
         var organization = organizationRepository.findById(id)
                 .orElseThrow(() -> new BWCNotFoundException(messageService.getMessage("organization.not.found", id)));
-        return repository.findAllByEntitiesContaining("organizations", organization)
+        return repository.findDistinctByOrganizations_Organization_Id(organization.getId())
                 .stream()
                 .map(mapper::entityToDTO)
                 .toList();
@@ -292,7 +292,8 @@ public class UserService extends GenericService<User, UserEditorForm, UserDTO, I
     public Page<UserDTO> findAllByOrganization(UUID id, Pageable pageable) {
         var organization = organizationRepository.findById(id)
                 .orElseThrow(() -> new BWCNotFoundException(messageService.getMessage("organization.not.found", id)));
-        return repository.findAllByEntitiesContaining("organizations", organization, pageable).map(mapper::entityToDTO);
+        return repository.findDistinctByOrganizations_Organization_Id(organization.getId(), pageable)
+                .map(mapper::entityToDTO);
     }
 
     @Override

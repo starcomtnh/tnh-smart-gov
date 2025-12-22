@@ -3,8 +3,11 @@ package com.tnh.baseware.core.repositories.user;
 import com.tnh.baseware.core.entities.user.User;
 import com.tnh.baseware.core.repositories.IGenericRepository;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -20,5 +23,14 @@ public interface IUserRepository extends IGenericRepository<User, UUID> {
     boolean existsByEmail(String email);
 
     boolean existsByIdn(String idn);
+
+    Page<User> findDistinctByOrganizations_Organization_Id(UUID organizationId, Pageable pageable);
+
+    List<User> findDistinctByOrganizations_Organization_Id(UUID organizationId);
+
+    List<User> findDistinctByOrganizations_Organization_IdAndRoles_Id(UUID organizationId, UUID roleId);
+
+    // find all users without organization
+    List<User> findDistinctByOrganizations_Organization_IdIsNull();
 
 }
