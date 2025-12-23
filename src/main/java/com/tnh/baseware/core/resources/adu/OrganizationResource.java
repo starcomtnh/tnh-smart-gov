@@ -3,7 +3,6 @@ package com.tnh.baseware.core.resources.adu;
 import com.tnh.baseware.core.annotations.ApiOkResponse;
 import com.tnh.baseware.core.dtos.adu.OrganizationDTO;
 import com.tnh.baseware.core.dtos.user.ApiMessageDTO;
-import com.tnh.baseware.core.dtos.user.UserDTO;
 import com.tnh.baseware.core.entities.adu.Organization;
 import com.tnh.baseware.core.enums.ApiResponseType;
 import com.tnh.baseware.core.forms.adu.OrganizationEditorForm;
@@ -16,9 +15,6 @@ import com.tnh.baseware.core.services.MessageService;
 import com.tnh.baseware.core.services.adu.IOrganizationService;
 
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.media.Content;
-import io.swagger.v3.oas.annotations.media.Schema;
-import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
@@ -106,14 +102,14 @@ public class OrganizationResource extends
         @ApiOkResponse(value = Integer.class, type = ApiResponseType.OBJECT)
         @PutMapping("{orgId}/users/{userId}/title")
         public ResponseEntity<ApiMessageDTO<Integer>> changeTitle(@PathVariable UUID orgId,
-                                                                  @PathVariable UUID userId,
-                                                                  @RequestBody ChangeUserTitleEditorForm request) {
+                        @PathVariable UUID userId,
+                        @RequestBody ChangeUserTitleEditorForm request) {
                 organizationService.changeTitle(orgId, userId, request.getTitleId());
                 return ResponseEntity.ok(ApiMessageDTO.<Integer>builder()
-                        .data(1)
-                        .result(true)
-                        .message(messageService.getMessage("users.title.changed"))
-                        .code(HttpStatus.OK.value())
-                        .build());
+                                .data(1)
+                                .result(true)
+                                .message(messageService.getMessage("users.title.changed"))
+                                .code(HttpStatus.OK.value())
+                                .build());
         }
 }

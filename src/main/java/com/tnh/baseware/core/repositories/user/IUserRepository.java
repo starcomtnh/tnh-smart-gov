@@ -24,9 +24,10 @@ public interface IUserRepository extends IGenericRepository<User, UUID> {
 
     boolean existsByIdn(String idn);
 
-    Page<User> findDistinctByOrganizations_Organization_Id(UUID organizationId, Pageable pageable);
+    Page<User> findDistinctByOrganizations_Organization_IdAndOrganizations_ActiveTrue(UUID organizationId,
+            Pageable pageable);
 
-    List<User> findDistinctByOrganizations_Organization_Id(UUID organizationId);
+    List<User> findDistinctByOrganizations_Organization_IdAndOrganizations_ActiveTrue(UUID organizationId);
 
     List<User> findDistinctByOrganizations_Organization_IdAndRoles_Id(UUID organizationId, UUID roleId);
 

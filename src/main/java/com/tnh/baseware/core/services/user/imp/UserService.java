@@ -5,6 +5,7 @@ import com.tnh.baseware.core.dtos.user.UserDTO;
 import com.tnh.baseware.core.dtos.user.UserTokenDTO;
 import com.tnh.baseware.core.entities.user.Menu;
 import com.tnh.baseware.core.entities.user.User;
+import com.tnh.baseware.core.entities.user.UserOrganization;
 import com.tnh.baseware.core.exceptions.BWCNotFoundException;
 import com.tnh.baseware.core.exceptions.BWCValidationException;
 import com.tnh.baseware.core.forms.user.ChangePasswordForm;
@@ -12,12 +13,14 @@ import com.tnh.baseware.core.forms.user.RegisterForm;
 import com.tnh.baseware.core.forms.user.ResetPasswordForm;
 import com.tnh.baseware.core.forms.user.UserEditorForm;
 import com.tnh.baseware.core.forms.user.UserProfileForm;
+import com.tnh.baseware.core.mappers.audit.ICategoryMapper;
 import com.tnh.baseware.core.mappers.user.IMenuMapper;
 import com.tnh.baseware.core.mappers.user.IUserMapper;
 import com.tnh.baseware.core.properties.SecurityProperties;
 import com.tnh.baseware.core.repositories.adu.IOrganizationRepository;
 import com.tnh.baseware.core.repositories.user.IMenuRepository;
 import com.tnh.baseware.core.repositories.user.IRoleRepository;
+import com.tnh.baseware.core.repositories.user.IUserOrganizationRepository;
 import com.tnh.baseware.core.repositories.user.IUserRepository;
 import com.tnh.baseware.core.securities.JwtTokenService;
 import com.tnh.baseware.core.services.GenericService;
@@ -31,6 +34,7 @@ import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.support.PageableExecutionUtils;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -52,7 +56,8 @@ public class UserService extends GenericService<User, UserEditorForm, UserDTO, I
     JwtTokenService jwtTokenService;
     SecurityProperties securityProperties;
     IMenuMapper menuMapper;
-    GenericEntityFetcher fetcher;
+    ICategoryMapper categoryMapper;
+    IUserOrganizationRepository userOrganizationRepository;
 
     public UserService(IUserRepository repository,
             IUserMapper mapper,
@@ -63,7 +68,9 @@ public class UserService extends GenericService<User, UserEditorForm, UserDTO, I
             PasswordEncoder passwordEncoder,
             JwtTokenService jwtTokenService,
             SecurityProperties securityProperties,
-            IMenuMapper menuMapper, GenericEntityFetcher fetcher) {
+            ICategoryMapper categoryMapper,
+            IUserOrganizationRepository userOrganizationRepository,
+            IMenuMapper menuMapper) {
         super(repository, mapper, messageService, User.class);
         this.roleRepository = roleRepository;
         this.organizationRepository = organizationRepository;
@@ -72,7 +79,9 @@ public class UserService extends GenericService<User, UserEditorForm, UserDTO, I
         this.jwtTokenService = jwtTokenService;
         this.securityProperties = securityProperties;
         this.menuMapper = menuMapper;
-        this.fetcher = fetcher;
+        this.userOrganizationRepository = userOrganizationRepository;
+        this.categoryMapper = categoryMapper;
+
     }
 
     @Override
@@ -281,10 +290,17 @@ public class UserService extends GenericService<User, UserEditorForm, UserDTO, I
     public List<UserDTO> findAllByOrganization(UUID id) {
         var organization = organizationRepository.findById(id)
                 .orElseThrow(() -> new BWCNotFoundException(messageService.getMessage("organization.not.found", id)));
-        return repository.findDistinctByOrganizations_Organization_Id(organization.getId())
-                .stream()
+        Set<UserOrganization> userOrgs = userOrganizationRepository
+                .findByOrganizationIdAndActiveTrue(organization.getId());
+        List<UserDTO> usersDTO = userOrgs.stream()
+                .map(UserOrganization::getUser)
                 .map(mapper::entityToDTO)
                 .toList();
+        for (int i = 0; i < usersDTO.size(); i++) {
+            usersDTO.get(i).setLevel(
+                    categoryMapper.entityToDTO(userOrgs.toArray(new UserOrganization[0])[i].getTitle()));
+        }
+        return usersDTO;
     }
 
     @Override
@@ -292,8 +308,22 @@ public class UserService extends GenericService<User, UserEditorForm, UserDTO, I
     public Page<UserDTO> findAllByOrganization(UUID id, Pageable pageable) {
         var organization = organizationRepository.findById(id)
                 .orElseThrow(() -> new BWCNotFoundException(messageService.getMessage("organization.not.found", id)));
-        return repository.findDistinctByOrganizations_Organization_Id(organization.getId(), pageable)
-                .map(mapper::entityToDTO);
+        Page<UserOrganization> userOrgs = userOrganizationRepository
+                .findByOrganizationIdAndActiveTrue(organization.getId(), pageable);
+        List<UserDTO> usersDTO = userOrgs.stream()
+                .map(UserOrganization::getUser)
+                .map(mapper::entityToDTO)
+                .toList();
+        // set title for each userDTO
+        for (int i = 0; i < usersDTO.size(); i++) {
+            usersDTO.get(i).setLevel(
+                    categoryMapper.entityToDTO(userOrgs.getContent().get(i).getTitle()));
+        }
+        return PageableExecutionUtils.getPage(
+                usersDTO,
+                pageable,
+                userOrgs::getTotalElements);
+
     }
 
     @Override
