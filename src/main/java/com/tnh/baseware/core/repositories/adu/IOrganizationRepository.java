@@ -12,7 +12,9 @@ import java.util.UUID;
 @Repository
 public interface IOrganizationRepository extends IGenericRepository<Organization, UUID> {
 
-    @EntityGraph(attributePaths = {"parent"})
+    @EntityGraph(attributePaths = { "parent" })
     @Query("SELECT o FROM Organization o")
     List<Organization> findAllWithParent();
+
+    List<Organization> findAllByUserOrganizations_Users_Id(UUID userId);
 }

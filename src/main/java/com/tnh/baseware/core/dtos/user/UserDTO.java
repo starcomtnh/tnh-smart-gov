@@ -1,6 +1,7 @@
 package com.tnh.baseware.core.dtos.user;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.tnh.baseware.core.dtos.audit.CategoryDTO;
 import com.tnh.baseware.core.entities.audit.Identifiable;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -40,5 +41,6 @@ public class UserDTO extends RepresentationModel<UserDTO> implements Identifiabl
     Integer failedLoginAttempts;
     Boolean superAdmin;
     String userType;
+    CategoryDTO level;
     List<RoleDTO> roles;
 }
