@@ -1,6 +1,6 @@
 package com.tnh.baseware.core.dtos.project;
 
-import com.tnh.baseware.core.dtos.adu.OrganizationDTO;
+import com.tnh.baseware.core.dtos.basic.BasicOrganizationDTO;
 import com.tnh.baseware.core.entities.audit.Identifiable;
 import com.tnh.baseware.core.enums.project.ProjectStatus;
 import lombok.*;
@@ -22,8 +22,7 @@ public class ProjectDTO extends RepresentationModel<ProjectDTO> implements Ident
     String name;
     String code;
     String description;
-    UUID organizationId;
-    String organizationName;
+    BasicOrganizationDTO organization;
     Instant startDate;
     Instant endDate;
     ProjectStatus status;

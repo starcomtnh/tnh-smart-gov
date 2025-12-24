@@ -23,6 +23,8 @@ public class ProjectEditorForm {
 
     @NotBlank(message = "{name.not.blank}")
     String name;
+    @NotBlank(message = "{code.not.blank}")
+    String code;
 
     String description;
 

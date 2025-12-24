@@ -6,7 +6,10 @@ import com.tnh.baseware.core.enums.task.TaskPriority;
 import com.tnh.baseware.core.enums.task.TaskStatus;
 import com.tnh.baseware.core.enums.task.TaskType;
 import jakarta.persistence.*;
+import jakarta.ws.rs.DefaultValue;
 import lombok.*;
+import lombok.Builder.Default;
+import lombok.experimental.FieldDefaults;
 
 import java.time.Instant;
 import java.util.UUID;
@@ -18,6 +21,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @Entity
 @Table
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class Task extends Auditable<String> {
 
     @Id
@@ -47,11 +51,14 @@ public class Task extends Auditable<String> {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "project_id")
-    private Project project;
+    Project project;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "task_list_id")
-    private TaskList taskList;
+    TaskList taskList;
+
+    // bổ sung các trường tạo gantt
+    @Builder.Default
+    Integer progress = 0;
 
 }
-

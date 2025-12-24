@@ -15,33 +15,36 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(
-        name = "task_members",
-        uniqueConstraints = {
-                @UniqueConstraint(columnNames = {"task_id", "user_id"})
-        }
-)
+@Table(name = "task_members", uniqueConstraints = {
+                @UniqueConstraint(columnNames = { "task_id", "user_id" })
+})
 public class TaskMember extends Auditable<String> {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    UUID id;
+        @Id
+        @GeneratedValue(strategy = GenerationType.UUID)
+        UUID id;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "task_id", nullable = false)
-    Task task;
+        @ManyToOne(fetch = FetchType.LAZY, optional = false)
+        @JoinColumn(name = "task_id", nullable = false)
+        Task task;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "user_id", nullable = false)
-    User user;
+        @ManyToOne(fetch = FetchType.LAZY, optional = false)
+        @JoinColumn(name = "user_id", nullable = false)
+        User user;
 
-    @Column(nullable = false)
-    String role; // LEAD, ASSIGNEE, REVIEWER, WATCHER
+        @Column(nullable = false)
+        String role; // LEAD, ASSIGNEE, REVIEWER, WATCHER
 
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    MemberStatus status;
+        @Enumerated(EnumType.STRING)
+        @Column(nullable = false)
+        MemberStatus status;
 
-    Instant joinedAt;
-    Instant completedAt;
+        Instant joinedAt;
+        Instant completedAt;
+
+        // bổ sung cho gantt
+        @Builder.Default
+        Integer personal_progress = 0;
+        Integer weight;
+
 }
