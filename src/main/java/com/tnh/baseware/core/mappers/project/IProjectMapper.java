@@ -19,7 +19,5 @@ public interface IProjectMapper extends IGenericMapper<Project, ProjectEditorFor
     @Mapping(source = "organizationId", target = "organization.id")
     void formToEntity(ProjectEditorForm form, @org.mapstruct.MappingTarget Project entity);
 
-    @Mapping(target = "organizationId", source = "organization.id")
-    @Mapping(target = "organizationName", source = "organization.name")
     ProjectDTO entityToDTO(Project entity);
 }
