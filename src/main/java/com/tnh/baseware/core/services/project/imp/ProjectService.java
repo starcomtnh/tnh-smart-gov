@@ -2,19 +2,23 @@ package com.tnh.baseware.core.services.project.imp;
 
 import com.tnh.baseware.core.dtos.project.ProjectDTO;
 import com.tnh.baseware.core.entities.project.Project;
+import com.tnh.baseware.core.entities.task.TaskList;
 import com.tnh.baseware.core.enums.project.ProjectAction;
 import com.tnh.baseware.core.enums.project.ProjectStatus;
 import com.tnh.baseware.core.exceptions.BWCNotFoundException;
+import com.tnh.baseware.core.exceptions.BWCValidationException;
 import com.tnh.baseware.core.forms.project.ProjectEditorForm;
 import com.tnh.baseware.core.mappers.project.IProjectMapper;
 import com.tnh.baseware.core.repositories.audit.ICategoryRepository;
 import com.tnh.baseware.core.repositories.project.IProjectRepository;
+import com.tnh.baseware.core.repositories.task.ITaskListRepository;
 import com.tnh.baseware.core.services.GenericService;
 import com.tnh.baseware.core.services.MessageService;
 import com.tnh.baseware.core.services.project.IProjectService;
 import jakarta.transaction.Transactional;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.UUID;
@@ -24,19 +28,41 @@ import java.util.UUID;
 public class ProjectService
         extends GenericService<Project, ProjectEditorForm, ProjectDTO, IProjectRepository, IProjectMapper, UUID>
         implements IProjectService {
+    ITaskListRepository taskListRepository;
 
     public ProjectService(IProjectRepository repository,
             IProjectMapper mapper,
-            MessageService messageService) {
+            MessageService messageService,
+                          ITaskListRepository taskListRepository) {
         super(repository, mapper, messageService, Project.class);
+        this.taskListRepository = taskListRepository;
     }
 
     @Override
     @Transactional
     public ProjectDTO create(ProjectEditorForm form) {
         Project project = mapper.formToEntity(form);
-
         project.setStatus(ProjectStatus.DRAFT);
+        project = repository.save(project);
+
+        if (form.isCreateDefaultTaskList()) {
+
+            if (StringUtils.isBlank(form.getDefaultTaskListName())) {
+                throw new BWCValidationException(
+                        "Default task list name must be provided when createDefaultTaskList is enabled"
+                );
+            }
+
+            taskListRepository.save(
+                    TaskList.builder()
+                            .project(project)
+                            .name(form.getDefaultTaskListName())
+                            .isDefault(true)
+                            .orderIndex(0)
+                            .build()
+            );
+        }
+
         return mapper.entityToDTO(repository.save(project));
     }
 

@@ -31,4 +31,7 @@ public class ProjectEditorForm {
 
     Instant startDate;
     Instant endDate;
+
+    boolean createDefaultTaskList;
+    String defaultTaskListName;
 }

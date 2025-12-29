@@ -26,6 +26,9 @@ public class TaskList extends Auditable<String> {
     @Column(nullable = false)
     private Integer orderIndex;
 
+    @Column(nullable = false)
+    Boolean isDefault;
+
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "project_id", nullable = false)
     private Project project;
