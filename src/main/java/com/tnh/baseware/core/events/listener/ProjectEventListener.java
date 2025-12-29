@@ -2,6 +2,7 @@ package com.tnh.baseware.core.events.listener;
 
 import com.tnh.baseware.core.entities.project.Project;
 import com.tnh.baseware.core.entities.project.ProjectMember;
+import com.tnh.baseware.core.entities.task.TaskList;
 import com.tnh.baseware.core.enums.project.ProjectMemberRole;
 import com.tnh.baseware.core.enums.project.ProjectStatus;
 import com.tnh.baseware.core.enums.project.ProjectType;
@@ -9,6 +10,7 @@ import com.tnh.baseware.core.events.type.UserCreatedEvent;
 import com.tnh.baseware.core.exceptions.BWCNotFoundException;
 import com.tnh.baseware.core.repositories.project.IProjectMemberRepository;
 import com.tnh.baseware.core.repositories.project.IProjectRepository;
+import com.tnh.baseware.core.repositories.task.ITaskListRepository;
 import com.tnh.baseware.core.repositories.user.IUserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -25,6 +27,7 @@ public class ProjectEventListener {
     private final IProjectRepository projectRepository;
     private final IProjectMemberRepository projectMemberRepository;
     private final IUserRepository userRepository;
+    private final ITaskListRepository taskListRepository;
 
     @Transactional(propagation = Propagation.REQUIRES_NEW)
     @TransactionalEventListener(phase = TransactionPhase.AFTER_COMMIT)
@@ -55,6 +58,17 @@ public class ProjectEventListener {
                             .build()
             );
         } catch (DataIntegrityViolationException ignore) {
+        }
+
+        if (!taskListRepository.existsByProjectId(project.getId())) {
+            taskListRepository.save(
+                    TaskList.builder()
+                            .project(project)
+                            .name("My Tasks")
+                            .isDefault(true)
+                            .orderIndex(0)
+                            .build()
+            );
         }
     }
 }
