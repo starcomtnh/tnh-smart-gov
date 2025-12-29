@@ -34,6 +34,7 @@ public class TaskMember extends Auditable<String> {
         User user;
 
         @Column(nullable = false)
+        @Enumerated(EnumType.STRING)
         TaskMemberRole role;
 
         @Enumerated(EnumType.STRING)
