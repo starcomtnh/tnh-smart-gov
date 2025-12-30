@@ -27,9 +27,9 @@ public class ProjectResource extends GenericResource<Project, ProjectEditorForm,
     IProjectService projectService;
 
     public ProjectResource(IGenericService<Project, ProjectEditorForm, ProjectDTO, UUID> service,
-                           MessageService messageService,
-                           SystemProperties systemProperties,
-                           IProjectService projectService) {
+            MessageService messageService,
+            SystemProperties systemProperties,
+            IProjectService projectService) {
         super(service, messageService, systemProperties.getApiPrefix() + "/projects");
         this.projectService = projectService;
     }
@@ -37,7 +37,7 @@ public class ProjectResource extends GenericResource<Project, ProjectEditorForm,
     @Operation(summary = "Perform an action on project")
     @PostMapping(value = "/{id}/actions")
     public void performAction(@PathVariable UUID id,
-                              @RequestBody @Valid ProjectActionForm form) {
+            @RequestBody @Valid ProjectActionForm form) {
         projectService.performAction(id, form.getAction());
     }
 }
