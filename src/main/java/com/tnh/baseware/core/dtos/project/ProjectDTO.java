@@ -28,4 +28,5 @@ public class ProjectDTO extends RepresentationModel<ProjectDTO> implements Ident
     Instant endDate;
     ProjectStatus status;
     List<ProjectAttachmentDTO> attachments;
+
 }

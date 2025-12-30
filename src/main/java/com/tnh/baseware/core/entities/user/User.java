@@ -2,6 +2,7 @@ package com.tnh.baseware.core.entities.user;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.tnh.baseware.core.entities.audit.Auditable;
+import com.tnh.baseware.core.entities.project.ProjectMember;
 import com.tnh.baseware.core.enums.UserType;
 
 import jakarta.persistence.*;

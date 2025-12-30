@@ -9,7 +9,6 @@ import com.tnh.baseware.core.exceptions.BWCNotFoundException;
 import com.tnh.baseware.core.exceptions.BWCValidationException;
 import com.tnh.baseware.core.forms.project.ProjectEditorForm;
 import com.tnh.baseware.core.mappers.project.IProjectMapper;
-import com.tnh.baseware.core.repositories.audit.ICategoryRepository;
 import com.tnh.baseware.core.repositories.project.IProjectRepository;
 import com.tnh.baseware.core.repositories.task.ITaskListRepository;
 import com.tnh.baseware.core.services.GenericService;
@@ -18,9 +17,12 @@ import com.tnh.baseware.core.services.project.IProjectService;
 import jakarta.transaction.Transactional;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
+
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -33,7 +35,7 @@ public class ProjectService
     public ProjectService(IProjectRepository repository,
             IProjectMapper mapper,
             MessageService messageService,
-                          ITaskListRepository taskListRepository) {
+            ITaskListRepository taskListRepository) {
         super(repository, mapper, messageService, Project.class);
         this.taskListRepository = taskListRepository;
     }
@@ -49,8 +51,7 @@ public class ProjectService
 
             if (StringUtils.isBlank(form.getDefaultTaskListName())) {
                 throw new BWCValidationException(
-                        "Default task list name must be provided when createDefaultTaskList is enabled"
-                );
+                        "Default task list name must be provided when createDefaultTaskList is enabled");
             }
 
             taskListRepository.save(
@@ -59,8 +60,7 @@ public class ProjectService
                             .name(form.getDefaultTaskListName())
                             .isDefault(true)
                             .orderIndex(0)
-                            .build()
-            );
+                            .build());
         }
 
         return mapper.entityToDTO(repository.save(project));
@@ -91,5 +91,17 @@ public class ProjectService
             throw new IllegalStateException("Only active project can be archived");
         }
         project.setStatus(ProjectStatus.ARCHIVED);
+    }
+
+    @Override
+    public List<Project> getProjectByOrganizationId(UUID organizationId) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getProjectByOrganizationId'");
+    }
+
+    @Override
+    public Page<Project> getProjectByOrganizationId(UUID organizationId, int page, int size) {
+        // TODO Auto-generated method stub
+        return null;
     }
 }

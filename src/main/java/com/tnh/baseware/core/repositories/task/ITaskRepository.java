@@ -13,14 +13,14 @@ import java.util.UUID;
 @Repository
 public interface ITaskRepository extends IGenericRepository<Task, UUID> {
     @Query("""
-                 SELECT\s
+                 SELECT
                      pm.role as projectRole,
                      tm.role as taskRole
                  FROM Task t
                  JOIN ProjectMember pm ON pm.project.id = t.project.id AND pm.user.id = :userId
                  LEFT JOIN TaskMember tm ON tm.task.id = t.id AND tm.user.id = :userId
                  WHERE t.id = :taskId
-            \s""")
+            """)
     Optional<UserTaskPermissionDTO> findUserPermissions(@Param("taskId") UUID taskId,
-                                                        @Param("userId") UUID userId);
+            @Param("userId") UUID userId);
 }

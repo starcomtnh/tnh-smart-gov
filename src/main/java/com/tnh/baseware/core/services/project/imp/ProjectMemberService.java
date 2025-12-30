@@ -1,8 +1,10 @@
 package com.tnh.baseware.core.services.project.imp;
 
+import com.tnh.baseware.core.dtos.project.MemberDTO;
 import com.tnh.baseware.core.dtos.project.ProjectMemberDTO;
 import com.tnh.baseware.core.entities.project.ProjectMember;
 import com.tnh.baseware.core.entities.user.UserOrganization;
+import com.tnh.baseware.core.exceptions.BWCBusinessException;
 import com.tnh.baseware.core.forms.project.ProjectMemberEditorForm;
 import com.tnh.baseware.core.mappers.project.IProjectMemberMapper;
 import com.tnh.baseware.core.repositories.project.IProjectMemberRepository;
@@ -35,15 +37,19 @@ public class ProjectMemberService extends
     }
 
     @Override
-    public List<ProjectMemberDTO> getMembersByProject(UUID projectId) {
+    public List<MemberDTO> getMembersByProject(UUID projectId) {
         // lấy người dùng của dự án cụ thể , nếu người dùng đó là quản lý của đơn vị ,
         var curentUser = getCurrentUser();
         var isUserSystem = isUserSystem();
         // lấy danh sách phòng ban của người dùng
         Set<UserOrganization> userOrgs = userOrganizationRepository.findByUserIdAndActiveTrue(curentUser.getId());
-
+        if (!isUserSystem) {
+            if (repository.existsByProject_IdAndUser_Id(projectId, curentUser.getId()) == false) {
+                throw new BWCBusinessException("You are not a member of this project");
+            }
+        }
         var members = repository.findDistinctByProject_Id(projectId);
-        return members.stream().map(mapper::entityToDTO).toList();
+        return members.stream().map(mapper::entityToMemberDTO).toList();
         // TODO Auto-generated method stub
     }
 
@@ -52,4 +58,5 @@ public class ProjectMemberService extends
         var members = repository.findDistinctByUser_Id(userId);
         return members.stream().map(mapper::entityToDTO).toList();
     }
+
 }
