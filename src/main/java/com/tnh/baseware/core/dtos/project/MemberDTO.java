@@ -1,11 +1,10 @@
-package com.tnh.baseware.core.dtos.basic;
+package com.tnh.baseware.core.dtos.project;
 
-import java.util.UUID;
-
-import com.tnh.baseware.core.entities.audit.Identifiable;
+import com.tnh.baseware.core.dtos.basic.BasicUserDTO;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -17,12 +16,8 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
+@EqualsAndHashCode(callSuper = true)
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class BasicUserDTO implements Identifiable<UUID> {
-    UUID id;
-    String username;
-    String fullName;
-    String email;
-    String phone;
-    String avatar;
+public class MemberDTO extends BasicUserDTO {
+    String role;
 }

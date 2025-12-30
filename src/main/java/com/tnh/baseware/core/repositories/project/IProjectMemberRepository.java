@@ -16,26 +16,28 @@ import java.util.UUID;
 @Repository
 public interface IProjectMemberRepository extends IGenericRepository<ProjectMember, UUID> {
 
-    Boolean existsByProjectIdAndUserId(UUID projectId, UUID userId);
+        Boolean existsByProjectIdAndUserId(UUID projectId, UUID userId);
 
-    @Query("""
-            SELECT pm.user
-            FROM ProjectMember pm
-            WHERE pm.project.id = :projectId
-            """)
-    Set<User> findUsersByProjectId(UUID projectId);
+        @Query("""
+                        SELECT pm.user
+                        FROM ProjectMember pm
+                        WHERE pm.project.id = :projectId
+                        """)
+        Set<User> findUsersByProjectId(UUID projectId);
 
-    @Query("""
-            SELECT pm.project
-            FROM ProjectMember pm
-            WHERE pm.user.id = :userId
-            """)
-    List<Project> findProjectsByUserId(UUID userId);
+        @Query("""
+                        SELECT pm.project
+                        FROM ProjectMember pm
+                        WHERE pm.user.id = :userId
+                        """)
+        List<Project> findProjectsByUserId(UUID userId);
 
-    Optional<ProjectMember> findByProjectIdAndUserId(UUID projectId, UUID userId);
+        Optional<ProjectMember> findByProjectIdAndUserId(UUID projectId, UUID userId);
 
-    List<ProjectMember> findDistinctByProject_Id(UUID projectId);
+        List<ProjectMember> findDistinctByProject_Id(UUID projectId);
 
-    List<ProjectMember> findDistinctByUser_Id(UUID userId);
+        List<ProjectMember> findDistinctByUser_Id(UUID userId);
+
+        Boolean existsByProject_IdAndUser_Id(UUID projectId, UUID userId);
 
 }
